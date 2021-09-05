@@ -1,33 +1,82 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Button } from '@material-ui/core';
+import { Button, TextField } from '@material-ui/core';
 
 import StudentList from './StudentList.jsx';
 
 function App() {
-  const [students, setStudents] = useState([]);
+  const [username, setUsername] = useState('');
+  const [nameError, setNameError] = useState(false);
 
-  const getAllStudents = () => axios
-    .get('/students')
-    .then((res) => res.data);
+  // const searchEuw = () =>
 
-  useEffect(() => {
-    getAllStudents()
-      .then((result) => {
-        setStudents(result);
-      });
-  }, [students]);
+  const clear = () => {
+    setUsername('');
+  };
 
   return (
     <div className="body-container">
-      <div className="header" > UserName Lookup
+      <div className="banner">
+        UserName Lookup
       </div>
       <div className="main-container">
-        <div className="btn-container">
-          <button>Submit</button>
-          <button>Reset</button>
+        <div className="search-container">
+          <TextField
+            className="search-box"
+            variant="outlined"
+            autoFocus
+            margin="dense"
+            label="Search"
+            placeholder="Enter A Username"
+            type="text"
+            fullWidth
+            value={username}
+            onChange={(event) => setUsername(event.target.value)}
+            error={nameError}
+          />
+          <div className="btn-container">
+            <Button variant="outlined">Submit</Button>
+            <Button
+              variant="outlined"
+              onClick={() => setUsername('')}
+            >
+              Clear
+            </Button>
+          </div>
         </div>
-        {/* <StudentList students={students} getAllStudents={getAllStudents} /> */}
+        <div>
+          <ul>
+            <li>
+              Euw:
+            </li>
+            <li>
+              FortniteTracker:
+            </li>
+            <li>
+              Kik:
+            </li>
+            <li>
+              Kongregate:
+            </li>
+            <li>
+              Quora:
+            </li>
+            <li>
+              Reddit:
+            </li>
+            <li>
+              Roblox:
+            </li>
+            <li>
+              SparkPeople:
+            </li>
+            <li>
+              Wattpad:
+            </li>
+            <li>
+              Xbox Gamertag:
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   );
