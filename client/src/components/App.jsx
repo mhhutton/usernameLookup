@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Button, TextField } from '@material-ui/core';
+import SearchIcon from '@material-ui/icons/Search';
 
 import StudentList from './StudentList.jsx';
 
 function App() {
   const [username, setUsername] = useState('');
   const [nameError, setNameError] = useState(false);
+  const [icon, setIcon] = useState(<SearchIcon />);
 
   // const searchEuw = () =>
 
@@ -16,10 +18,11 @@ function App() {
   return (
     <div className="body-container">
       <div className="banner">
-        UserName Lookup
+      {<SearchIcon/>}UserName Lookup
       </div>
       <div className="main-container">
         <div className="search-container">
+          <SearchIcon />
           <TextField
             className="search-box"
             variant="outlined"
@@ -29,7 +32,7 @@ function App() {
             placeholder="Enter A Username"
             type="text"
             fullWidth
-            value={username}
+            // value={icon}
             onChange={(event) => setUsername(event.target.value)}
             error={nameError}
           />
